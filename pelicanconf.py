@@ -4,16 +4,18 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Marco Minutoli'
 SITENAME = u'Bit that Bite'
-SITEURL = ''
+SITEURL = 'http://mminutoli.github.io'
 
-TIMEZONE = u'Europe/Rome'
+GOOGLE_ANALYTICS = 'UA-42899189-1'
+
+TIMEZONE = "Europe/Rome"
 # THEME = u'/home/mminutoli/tools/pelican-themes/mnmlist'
 
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
+FEED_ALL_ATOM = 'feeds/all.rss.xml'
+CATEGORY_FEED_ATOM = 'feeds/%s.rss.xml'
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
