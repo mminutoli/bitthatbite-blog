@@ -17,6 +17,7 @@ aggregate of tools (ie. binutils) and useful libraries
 (ie. newlib). The latter is a version of gcc with support to the
 openrisc architecture. To clone the two repositories run:
 
+    :::console
     mkdir -p $TOOLCHAIN_SRC_DIR
     cd $TOOLCHAIN_SRC_DIR
     git clone git://github.com/openrisc/or1k-src.git
@@ -32,11 +33,13 @@ user home directory.
 
 The first step is to create two build directory both repositories.
 
+    :::console
     mkdir $TOOLCHAIN_SRC_DIR/bld-or1k-src
     mkdir $TOOLCHAIN_SRC_DIR/bld-or1k-gcc
 
 The first step in building a toolchain is to build binutils:
 
+    :::console
     cd bld-or1k-src
     ../or1k-src/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain --enable-shared \
       --disable-itcl --disable-tk --disable-tcl --disable-winsup --disable-libgui --disable-rda \
@@ -46,19 +49,22 @@ The first step in building a toolchain is to build binutils:
 
 Once completed we are ready to build GCC for the first time:
 
-     cd ../bld-or1k-gcc
-     ../or1k-gcc/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain \
-       --enable-languages=c --disable-shared --disable-libssp
-     make -j4
-     make install
+    :::console
+    cd ../bld-or1k-gcc
+    ../or1k-gcc/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain \
+      --enable-languages=c --disable-shared --disable-libssp
+    make -j4
+    make install
 
 Then we need to compile newlib and gdb, but before we start we need to
 had our freshly built GCC to the path:
 
+    :::console
     export PATH=/home/<user>/tools/or1k-toolchain/bin:$PATH
 
 and then
 
+    :::console
     cd ../bld-or1k-src
     ../or1k-src/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain \
       --enable-shared --disable-itcl \
@@ -73,15 +79,17 @@ Note that this time `make` is missing the `-j` option.
 Now we are ready for the final step. Build GCC again but this time
 with C++ and newlib support:
 
-     cd ../bld-or1k-gcc
-     ../or1k-gcc/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain \
-       --enable-languages=c,c++ --disable-shared --disable-libssp --with-newlib
-     make -j4
-     make install
+    :::console
+    cd ../bld-or1k-gcc
+    ../or1k-gcc/configure --target=or1k-elf --prefix=$HOME/or1k-toolchain \
+      --enable-languages=c,c++ --disable-shared --disable-libssp --with-newlib
+    make -j4
+    make install
 
 The toolchain is built. The last thing to do is to open your text
 editor add the toolchain to the path in your .profile like this:
 
+    :::bash
     # set PATH to include or1k-elf
     if [ -d "$HOME/or1k-toolchain/bin" ] ; then
        PATH="$HOME/or1k-toolchain/bin:$PATH"
