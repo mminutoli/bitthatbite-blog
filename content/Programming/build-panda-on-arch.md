@@ -36,6 +36,10 @@ instructions.
 Anyway you can find more information
 [here](https://wiki.archlinux.org/index.php/Arch_User_Repository)
 
+As an option you can install verilator. Again it is not available on
+the official repos but you can find the PKGBUILD in the AUR
+[here](https://aur.archlinux.org/packages/verilator/).
+
 Once all the dependencies are installed you're ready to compile panda.
 Extract panda from the archive and procede with the usual configure,
 make and make install sequence :).
@@ -43,7 +47,7 @@ make and make install sequence :).
     :::console
     ./configure --with-gcc48=/usr/bin/gcc --enable-bambu \
     --enable-icarus  --prefix=/opt/panda --enable-flopoco \
-    --disable-release
+    --enable-verilator --disable-release
 
     make -j4
     make install
@@ -52,4 +56,5 @@ At the time of writing ArchLinux comes with gcc-4.8 but in the future
 you will need to pass --with-gcc49 :).
 
 The option --disable-release is necessary because ArchLinux doesn't
-distribute static libraries.
+distribute static libraries. Remember to remove --enable-verilator if
+you don't have it installed.
