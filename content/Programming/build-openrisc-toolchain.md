@@ -60,7 +60,7 @@ Then we need to compile newlib and gdb, but before we start we need to
 had our freshly built GCC to the path:
 
     :::console
-    export PATH=/home/<user>/tools/or1k-toolchain/bin:$PATH
+    export PATH=$HOME/or1k-toolchain/bin:$PATH
 
 and then
 
